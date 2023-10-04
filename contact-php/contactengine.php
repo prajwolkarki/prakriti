@@ -3,12 +3,15 @@
 $EmailFrom = "";
 $EmailTo = "prakritikarki.sci@gmail.com";
 $Subject = "Subject";
-$Ime = Trim(stripslashes($_POST['Ime'])); 
+$Ime = Trim(stripslashes($_POST['Name'])); 
 $Email = Trim(stripslashes($_POST['Email'])); 
-$Poruka = Trim(stripslashes($_POST['Poruka'])); 
+$Message = Trim(stripslashes($_POST['Message'])); 
 
 // validation
 $validationOK=true;
+if (empty($Name) || empty($Email) || empty($Message)) {
+  $validationOK = false;
+}
 if (!$validationOK) {
   print "<meta http-equiv=\"refresh\" content=\"0;URL=error.htm\">";
   exit;
@@ -16,14 +19,14 @@ if (!$validationOK) {
 
 // prepare email body text
 $Body = "";
-$Body .= "Ime: ";
-$Body .= $Ime;
+$Body .= "Name: ";
+$Body .= $Name;
 $Body .= "\n";
 $Body .= "Email: ";
 $Body .= $Email;
 $Body .= "\n";
-$Body .= "Poruka: ";
-$Body .= $Poruka;
+$Body .= "Message: ";
+$Body .= $Message;
 $Body .= "\n";
 
 // send email 
